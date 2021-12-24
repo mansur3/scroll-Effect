@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                padding-bottom: 1000px;
+            }
+            #data {
+                width: 400px;
+                /* height: 200px; */
+                padding: 20px;
+                margin: 50px auto;
+                background: purple;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div id = "data"></div>
+        </div>
+    </body>
+    <script>
+        // function update() {
+        //     let elem = document.getElementById("data");
+        //     let rect = elem.getBoundingClientRect();
+        //     let para = document.createElement("p");
+        //             var count = 0;
+        //             for (let i = 1; i < 25; i++) {
+        //                 para.textContent = "Masai School" + count;
+        //                 count++;
+        //                 elem.appendChild(para);
+        //             }
+            
+        // }
+        // // 
+        
+        //         document.addEventListener('scroll', update);
+            
+        //         update();
+
+
+
+
+                let lastKnownScrollPosition = 0;
+                let ticking = false;
+
+                function doSomething(scrollPos) {
+                    console.log(scrollPos)
+                    if(scrollPos > 0) {
+                        let elem = document.getElementById("data");
+                        let para = document.createElement("p");
+                    var count = 0;
+                    for (let i = 1; i < 25; i++) {
+                        para.textContent = "Masai School" + count;
+                        count++;
+                        elem.appendChild(para);
+                    }
+                    }
+                // Do something with the scroll position
+                }
+
+                document.addEventListener('scroll', function(e) {
+                lastKnownScrollPosition = window.scrollY;
+
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                    doSomething(lastKnownScrollPosition);
+                    ticking = false;
+                    });
+
+                    ticking = true;
+                }
+                });
+    </script>
+</html>
